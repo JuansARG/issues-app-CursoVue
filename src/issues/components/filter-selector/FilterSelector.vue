@@ -10,6 +10,4 @@ import StateSelector from './StateSelector.vue';
         <LabelSelector/>
     </div>
 </template>
-
-
 <style scoped></style>

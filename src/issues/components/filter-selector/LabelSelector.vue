@@ -1,30 +1,34 @@
 <script setup lang="ts">
 import LoaderSpinner from 'src/shared/components/LoaderSpinner.vue';
 import useLabels from '../../composables/useLabels';
+import { toRefs } from 'vue';
 
 
-const { labelsQuery } = useLabels();
+const { labelsQuery, toogleLabel, selectedLabels } = useLabels();
 
 </script>
 <template>
-    <LoaderSpinner
-        class="q-mt-md"
-        size="50px" 
-        :thickness="1"
-        :show-text="false"
-    />
+    <div class="q-mt-md">
 
-    <q-chip 
-        v-for="label of 10"
-        :key="label"
-        color="primary" 
-        outline 
-        clickable
-    >Algun nombre
-    </q-chip>
+        <LoaderSpinner
+            v-if="labelsQuery.isFetching.value"
+            class="q-mt-md"
+            size="50px" 
+            :thickness="1"
+            :show-text="false"
+        />
+
+        <q-chip 
+            v-else
+            v-for="{ id, name, color } of labelsQuery.data.value"
+            :key="id"
+            :style="{ color: `#${color}` }"
+            :outline=" !selectedLabels.includes(name)" 
+            clickable
+            @click="toogleLabel(name)"
+            >{{ name }}
+        </q-chip>
+
+    </div>
 </template>
-
-
-<style scoped>
-
-</style>
+<style scoped></style>

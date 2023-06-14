@@ -9,6 +9,10 @@ yarn
 npm install
 ```
 
+### Configura EVN variables
+Copy ```.env.template``` and rename it as ```.env```
+
+
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 quasar dev
@@ -36,6 +40,3 @@ npm run format
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
