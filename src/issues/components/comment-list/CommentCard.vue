@@ -1,38 +1,36 @@
 <script setup lang="ts">
-import { Issue, State } from 'src/issues/interfaces/issue';
 import { toRefs } from 'vue';
-import { timeSince } from '../../../shared/helpers/time-since';
+import { timeSince } from 'src/shared/helpers/time-since';
 import VueMarkdown from 'vue-markdown-render';
-
+import { Comment } from 'src/issues/interfaces/comment';
 
 interface Props {
-    issue: Issue;
-}
-
+    comment: Comment;
+};
 const props = defineProps<Props>();
-const { issue } = toRefs(props)
+const { comment } = toRefs(props);
 
 
 </script>
-<template >
-    <q-card class="text-black col-12 q-mb-md" flat bordered v-if="issue">
+<template>
+    <q-card class="text-black col-12 q-mb-md" flat bordered>
         <q-item>
             <q-item-section avatar>
                 <q-avatar >
-                    <img :src="issue.user.avatar_url" alt="User Avatar">
+                    <img :src="comment.user.avatar_url" alt="User Avatar">
                 </q-avatar>
             </q-item-section>
 
             <q-item-section>
                 <q-item-label>
-                    <router-link :to="`/issue/${ issue.number }`">{{ issue.title }}</router-link>
+                    <span class="text-h5">{{ comment.user.login }}</span>
                 </q-item-label>
                 <q-item-label caption>
-                    {{ timeSince(issue.created_at) }} ago
+                    {{ timeSince(comment.created_at) }} ago
                 </q-item-label>
             </q-item-section>
 
-            <q-item-section>
+            <!-- <q-item-section>
                 <q-item-label class="row items-center justify-end">
                     <q-item-label class="q-mr-md">
                         <q-icon name="question_answer" />
@@ -50,16 +48,16 @@ const { issue } = toRefs(props)
                         icon="bug_report"> Open </q-chip>
                 </q-item-label>
 
-            </q-item-section>
+            </q-item-section> -->
         </q-item>
 
         <q-separator />
 
         <q-item-section class="q-pa-md markdown-css">
-            <vue-markdown :source="issue.body || ''"  />
+            <VueMarkdown :source="comment.body || ''"  />
         </q-item-section>
 
-        <q-separator />
+        <!-- <q-separator />
 
         <q-item-section class="q-pa-xs q-gutter-xs">
             <div>
@@ -72,12 +70,8 @@ const { issue } = toRefs(props)
                     >{{ name }}
                 </q-chip>
             </div>
-        </q-item-section>
+        </q-item-section> -->
 
     </q-card>
 </template>
-<style>
-.markdown-css img {
-    width: 250px!important;
-}
-</style>
+<style scoped></style>

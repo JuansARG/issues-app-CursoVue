@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/vue-query';
 import { githubApi } from 'src/api/githubApi';
-import { Label } from '../interfaces/labels';
+import { Label } from '../interfaces/label';
 import { useIssuesStore } from '../../stores/issues';
 import { storeToRefs } from 'pinia';
 
