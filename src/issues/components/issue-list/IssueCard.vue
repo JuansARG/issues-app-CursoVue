@@ -3,6 +3,7 @@ import { Issue, State } from 'src/issues/interfaces/issue';
 import { toRefs } from 'vue';
 import { timeSince } from '../../../shared/helpers/time-since';
 import VueMarkdown from 'vue-markdown-render';
+import useIssue from '../../composables/useIssue';
 
 
 interface Props {
@@ -10,12 +11,20 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const { issue } = toRefs(props)
+const { issue } = toRefs(props);
+
+const { prefetchIssue, setIssueCashData } = useIssue( issue.value.number, { autoload: false } );
 
 
 </script>
 <template >
-    <q-card class="text-black col-12 q-mb-md" flat bordered v-if="issue">
+    <q-card
+        @mouseenter="setIssueCashData(issue)" 
+        v-if="issue"
+        class="text-black col-12 q-mb-md" 
+        flat 
+        bordered
+    >
         <q-item>
             <q-item-section avatar>
                 <q-avatar >

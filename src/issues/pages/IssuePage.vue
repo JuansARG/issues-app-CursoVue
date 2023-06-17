@@ -10,7 +10,6 @@ const route = useRoute();
 const { id }= route.params;
 
 const { issueQuery, commentsQuery } = useIssue( +id );
-console.log(commentsQuery.data.value)
 
 </script>
 <template>

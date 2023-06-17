@@ -3,7 +3,6 @@ import LoaderSpinner from 'src/shared/components/LoaderSpinner.vue';
 import FilterSelector from '../components/filter-selector/FilterSelector.vue';
 import IssueList from '../components/issue-list/IssueList.vue';
 import useIssues from '../composables/useIssues';
-import { toRefs } from 'vue';
 
 
 const { issuesQuery } = useIssues();

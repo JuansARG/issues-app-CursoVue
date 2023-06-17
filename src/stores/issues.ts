@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
+import { State } from 'src/issues/interfaces/issue';
 import { ref } from 'vue';
 
 
 export const useIssuesStore = defineStore('Issues', () => {
 
-    const state = ref<string>(''); // all, open, closed
+    const state = ref<State>(State.All); // all, open, closed
     const labels = ref<string[]>([]);
 
 
